@@ -21,7 +21,7 @@ In my project I loaded [Dataset](https://www.kaggle.com/gagazet/path-of-exile-le
 ---
 
 * Contains :
-  - Dataset i choosed is [path of exile](https://www.kaggle.com/gagazet/path-of-exile-league-statistic) dataset. That contains statistics for 59,000 players who played path of exile. One file with 12 data sections.
+  - Dataset I choosed is [path of exile](https://www.kaggle.com/gagazet/path-of-exile-league-statistic) dataset. That contains statistics for 59,000 players who played path of exile. One file with 12 data sections.
   
 * Column name and description  : 
 
@@ -142,7 +142,7 @@ people.createOrReplaceTempView("people_tb")
 ### Analysis and Visualization
 ---
 
-In this part i show some queries and output :
+In this part I show some queries and output :
 
 - Count number of player in distinct ladder and sort :
   - **Query :** ```spark.sql("select ladder, count(*) As count From people_tb group by ladder Order by count").show()```
