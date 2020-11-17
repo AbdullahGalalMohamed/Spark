@@ -1,6 +1,6 @@
 # Apache Spark with scala project
 
-In my project I loaded [Dataset](https://www.kaggle.com/gagazet/path-of-exile-league-statistic) into dataframes and did some analysis using a spark with scala language, i used IntelliJ IDEA in cloudera VM.
+In my project I loaded [Dataset](https://www.kaggle.com/gagazet/path-of-exile-league-statistic) into dataframes and did some analysis using a spark with scala language, I used IntelliJ IDEA in cloudera VM.
 
 ### Table of Contents 
 ---
