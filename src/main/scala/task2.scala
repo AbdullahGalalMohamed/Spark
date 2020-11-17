@@ -8,37 +8,37 @@ object task2 {
     Logger.getRootLogger.setLevel(Level.INFO)
 
     val spark = SparkSession
-	     .builder
-	     .appName("Hive task")
-	     .master("local[4]")
-	     .config("spark.sql.warehouse.dir","thrift://quickstart.cloudera:9083")
-	     .enableHiveSupport()
-	     .getOrCreate()
-	val customSchema = StructType(Array(
-	     StructField("rank", IntegerType, true),
-	     StructField("dead", BooleanType, true),
-	     StructField("online", BooleanType, true),
-	     StructField("name", StringType, true),
-	     StructField("level", IntegerType, true),
-	     StructField("class", StringType, true),
-	     StructField("id", StringType, true),
-	     StructField("experience", DoubleType, true),
-	     StructField("account", StringType, true),
-	     StructField("challenges", IntegerType, true),
-	     StructField("twitch", StringType, true),
-	     StructField("ladder", StringType, true)))
-	
-	val people = spark.read.option("header", "true").option("nullValue", "null").schema(customSchema).csv("/tmp/idea-IU-183.6156.11/poe_stats.csv")    
-	
-	// to solve overwrite mode issue
-	spark.conf.set("spark.sql.legacy.allowCreatingManagedTableUsingNonemptyLocation","true")    
-	
-	people.write.mode("overwrite").saveAsTable("hive_task_db.parquet_tb")
-	
-	people = spark.read.table("hive_task_db.parquet_tb")
-	people.createOrReplaceTempView("people_tb")
+      .builder
+      .appName("Hive task")
+      .master("local[4]")
+      .config("spark.sql.warehouse.dir","thrift://quickstart.cloudera:9083")
+      .enableHiveSupport()
+      .getOrCreate()
+    val customSchema = StructType(Array(
+      StructField("rank", IntegerType, true),
+      StructField("dead", BooleanType, true),
+      StructField("online", BooleanType, true),
+      StructField("name", StringType, true),
+      StructField("level", IntegerType, true),
+      StructField("class", StringType, true),
+      StructField("id", StringType, true),
+      StructField("experience", DoubleType, true),
+      StructField("account", StringType, true),
+      StructField("challenges", IntegerType, true),
+      StructField("twitch", StringType, true),
+      StructField("ladder", StringType, true)))
 
-    
+    val people = spark.read.option("header", "true").option("nullValue", "null").schema(customSchema).csv("/tmp/idea-IU-183.6156.11/poe_stats.csv")
+
+    // to solve overwrite mode issue
+    spark.conf.set("spark.sql.legacy.allowCreatingManagedTableUsingNonemptyLocation","true")
+
+    people.write.mode("overwrite").saveAsTable("hive_task_db.parquet_tb")
+
+    people = spark.read.table("hive_task_db.parquet_tb")
+    people.createOrReplaceTempView("people_tb")
+
+
     // 1
     println("Select the name and challenges columns (challengs > 35)")
     spark.sql("select name, challenges From people_tb where challenges > 35").show()
