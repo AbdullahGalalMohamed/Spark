@@ -28,7 +28,7 @@ object task2 {
       StructField("twitch", StringType, true),
       StructField("ladder", StringType, true)))
 
-    val people = spark.read.option("header", "true").option("nullValue", "null").schema(customSchema).csv("/tmp/idea-IU-183.6156.11/poe_stats.csv")
+    val people = spark.read.option("header", "true").option("nullValue", "null").schema(customSchema).csv("./src/main/Resources/poe_stats.csv")
 
     // to solve overwrite mode issue
     spark.conf.set("spark.sql.legacy.allowCreatingManagedTableUsingNonemptyLocation","true")
