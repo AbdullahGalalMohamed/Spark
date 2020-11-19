@@ -248,5 +248,6 @@ In this part I show some queries and output :
     |       NauseaIV       |  7864 |  Occultist |   70  |      3     |
     |        Pardwn        |  8386 |   Raider   |   69  |      1     |
     |     SexistRanger     |  8395 |   Raider   |   69  |      2     |
+    
     only showing top 20 rows.
  
