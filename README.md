@@ -221,3 +221,32 @@ In this part I show some queries and output :
   
   ![Chart](https://scontent.fcai19-1.fna.fbcdn.net/v/t1.15752-9/125871087_288431232477249_1420064188091589239_n.jpg?_nc_cat=111&ccb=2&_nc_sid=ae9488&_nc_eui2=AeHQGJ_V4cA1Bm6GGo9hOY3SXQDkzGZk9RhdAOTMZmT1GBnR_c-lf1v5mFb0s4asv0PRXS9CZmiimBfbOvhwqfR3&_nc_ohc=FShESJ6x9LIAX8lCopG&_nc_ht=scontent.fcai19-1.fna&oh=9f42a12003343b253e88182aefb43bc2&oe=5FDABF9C)
   - **Output Description :**  Shows Harbinger division have the large number of players finished challenges.
+  
+- Top 3 ranked players per class per level :
+  - **Query :** ```spark.sql("select * from (select name, rank, class, level, row_number() over (partition by class, level order by rank) as row_number from people_tb) ranks where row_number <= 3").show()```
+  - **Output :**
+  
+    |         name         |  rank |    class   | level | row_number |
+    |:--------------------:|:-----:|:----------:|:-----:|:----------:|
+    |    FAIL_OF_ORHATS    |  2356 |  Berserker |   84  |      1     |
+    |   Unknown_Pleasures  |  2361 |  Berserker |   84  |      2     |
+    |     Okeledokelie     |  2362 |  Berserker |   84  |      3     |
+    |      SSFWarquin      |  9610 |  Chieftain |   67  |      1     |
+    |        Anthrok       |  9685 |  Chieftain |   67  |      2     |
+    |    SecondTimeSSFhc   |  9695 |  Chieftain |   67  |      3     |
+    |   xxWolhaiksongSSF   | 14790 |  Gladiator |   53  |      1     |
+    | HailTheVictorious... | 14811 |  Gladiator |   53  |      2     |
+    |    Cruos_Earthrend   | 14813 |  Gladiator |   53  |      3     |
+    |    PantslessBlast    | 14309 | Hierophant |   54  |      1     |
+    |       Litusant       | 14337 | Hierophant |   54  |      2     |
+    |    Solo_Self_Suck    | 14357 | Hierophant |   54  |      3     |
+    |       КЙХъалко       |  3977 | Juggernaut |   79  |      1     |
+    |    MrUnbreakableX    |  3981 | Juggernaut |   79  |      2     |
+    |      solororbust     |  3985 | Juggernaut |   79  |      3     |
+    |      YzoofMaster     |  7811 |  Occultist |   70  |      1     |
+    | Essence_Drain_Wen... |  7813 |  Occultist |   70  |      2     |
+    |       NauseaIV       |  7864 |  Occultist |   70  |      3     |
+    |        Pardwn        |  8386 |   Raider   |   69  |      1     |
+    |     SexistRanger     |  8395 |   Raider   |   69  |      2     |
+    only showing top 20 rows.
+ 
